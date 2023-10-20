@@ -15,16 +15,16 @@ use App\Http\Controllers\LoginRegisterController;
 */
 
 Route::controller(LoginRegisterController::class)->group(function() {
-    Route::get('/register', 'register')->name('register');
+    Route::get('/', 'index')->name('home');
+    Route::get('/register', 'register')->name('register')->middleware('nonLogin');
     Route::post('/store', 'store')->name('store');
-    Route::get('/login', 'login')->name('login');
+    Route::get('/login', 'login')->name('login')->middleware('nonLogin');
     Route::post('/authenticate', 'authenticate')->name('authenticate');
-    Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::post('/logout', 'logout')->name('logout');
 });
 
 Route::get('/portfolio', function(){
     return view('portfolio');
-});
+})->name('portfolio')->middleware('auth');
 
 

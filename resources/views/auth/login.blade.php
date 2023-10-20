@@ -1,7 +1,13 @@
 @extends('layouts.main')
 
 @section('content')
+    
     <div class="max-w-xl mx-auto lg:py-8">
+        @if (session('success'))
+        <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+            <span class="font-medium">Success!</span> {{ session('success') }}
+        </div>
+        @endif
         <h1 class="text-center font-bold text-2xl mb-6 text-slate-600">Login Form</h1>
         <form method="post" action="{{ route('authenticate') }}">
             @csrf
