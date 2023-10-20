@@ -27,4 +27,33 @@
             <button type="submit" class="text-white bg-gradient-to-r from-teal-300 via-teal-400 to-teal-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Register</button>
         </form>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const passwordInput = document.getElementById("password");
+            const checkInput = document.getElementById("check");
+            const submitButton = document.querySelector("button[type='submit']");
+    
+            // Function to check if passwords match
+            function checkPasswords() {
+                if (passwordInput.value === checkInput.value) {
+                    checkInput.setCustomValidity('');
+                } else {
+                    checkInput.setCustomValidity('Passwords do not match');
+                }
+            }
+    
+            // Add event listeners to password and check inputs
+            passwordInput.addEventListener("input", checkPasswords);
+            checkInput.addEventListener("input", checkPasswords);
+    
+            // Disable form submission until passwords match
+            submitButton.addEventListener("click", function (e) {
+                if (passwordInput.value !== checkInput.value) {
+                    e.preventDefault();
+                    alert("Passwords do not match. Please re-enter them.");
+                }
+            });
+        });
+    </script>
 @endsection
