@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SendEmailController;
 use App\Http\Controllers\LoginRegisterController;
 
 /*
@@ -21,10 +22,15 @@ Route::controller(LoginRegisterController::class)->group(function() {
     Route::get('/login', 'login')->name('login')->middleware('nonLogin');
     Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::post('/logout', 'logout')->name('logout');
+    Route::get('/send-mail', [SendEmailController::class,'index'])->name('kirim-email');
+    // Route::post('/post-email', [SendEmailController::class, 'store'])->name('post-email');
+    Route::get('/notif', [SendEmailController::class,'notif'])->name('notif');
 });
 
 Route::get('/portfolio', function(){
     return view('portfolio');
 })->name('portfolio')->middleware('auth');
+
+
 
 

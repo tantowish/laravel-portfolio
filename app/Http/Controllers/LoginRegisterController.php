@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Jobs\SendMailJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -43,6 +44,14 @@ class LoginRegisterController extends Controller
             "password"=> "required|min:3"
         ]);
         User::create($request->all());
+
+        $data =[
+            "name"=>"Register Account",
+            "subject"=>"Register Account",
+            "body"=> "Selamat, Anda telah teregistrasi pada halaman Tohska Portofolio",
+        ];
+        $data['email']=$request['email'];
+        dispatch(new SendMailJob($data));
         return redirect("/login")->with("success","Account created, please login");
     }
 
