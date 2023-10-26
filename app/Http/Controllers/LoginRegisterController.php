@@ -48,7 +48,7 @@ class LoginRegisterController extends Controller
         $data =[
             "name"=>"Register Account",
             "subject"=>"Register Account",
-            "body"=> "Selamat, Anda telah teregistrasi pada halaman Tohska Portofolio",
+            "body" => "Selamat, akun anda telah terdaftar</p><p>Name : " . $request['name'] . "</p><p>Email : " . $request['email'] . "</p>",
         ];
         $data['email']=$request['email'];
         dispatch(new SendMailJob($data));

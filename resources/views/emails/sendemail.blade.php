@@ -8,8 +8,8 @@
 </head>
 <body>
     <h3>{{ $data['name'] }}</h3>
-    <h4>{{ $data['body'] }}</h4>
+    <p>{!! $data['body'] !!}</p>
    
-    <p>Terima kasih</p>   
+    {{-- <p>Terima kasih</p>    --}}
 </body>
 </html>
